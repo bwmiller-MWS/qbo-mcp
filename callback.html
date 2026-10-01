@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Finishing QuickBooks sign-in</title>
+<style>
+  :root { --bg:#f5f6f8; --card:#fff; --text:#1f2933; --muted:#52606d; --accent:#2ca01c; --border:#e4e7eb; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14171a; --card:#1f2428; --text:#e4e7eb; --muted:#9aa5b1; --border:#323a42; } }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, "Segoe UI", sans-serif; }
+  main { max-width:640px; margin:48px auto; padding:0 16px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:32px; }
+  h1 { margin:0 0 16px; font-size:24px; } a { color:var(--accent); } code { background:var(--bg); padding:2px 6px; border-radius:4px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1 id="title">Finishing QuickBooks sign-in…</h1>
+    <p id="msg">Handing the sign-in back to MWS QBO MCP on this computer.</p>
+  </div>
+</main>
+<script>
+  // OAuth redirect relay. Intuit requires an HTTPS redirect URI for production
+  // apps, but MWS QBO MCP runs on the user's own computer. Intuit redirects here,
+  // and this page forwards ONLY the OAuth response parameters to the app's local
+  // listener. The app verifies "state" and exchanges the code (which is useless
+  // without the app's client secret). Nothing is stored or sent anywhere else.
+  // If you change QBO_LOCAL_CALLBACK_PORT in the app's .env, change it here too.
+  var LOCAL_CALLBACK = 'http://localhost:3000/callback';
+
+  var incoming = new URLSearchParams(window.location.search);
+  var out = new URLSearchParams();
+  ['code', 'state', 'realmId', 'error', 'error_description'].forEach(function (k) {
+    if (incoming.has(k)) out.set(k, incoming.get(k));
+  });
+
+  if (!out.has('state')) {
+    document.getElementById('title').textContent = 'Nothing to do here';
+    document.getElementById('msg').innerHTML =
+      'This page is only used while connecting MWS QBO MCP to QuickBooks. To connect, see <a href="connect.html">Connect or reconnect</a>.';
+  } else {
+    var target = LOCAL_CALLBACK + '?' + out.toString();
+    document.getElementById('msg').innerHTML =
+      'Handing the sign-in back to MWS QBO MCP on this computer. If nothing happens, make sure the app is waiting for sign-in ' +
+      '(run <code>npm run auth</code>) and <a id="go">click here</a>.';
+    document.getElementById('go').href = target;
+    window.location.replace(target); // replace() keeps the code out of browser history
+  }
+</script>
+</body>
+</html>
