@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install MWS QuickBooks</title>
+<style>
+  :root { --bg:#f5f6f8; --card:#fff; --text:#1f2933; --muted:#52606d; --accent:#2ca01c; --border:#e4e7eb; --note:#fff8e1; --noteb:#f0d98a; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#14171a; --card:#1f2428; --text:#e4e7eb; --muted:#9aa5b1; --border:#323a42; --note:#2b2614; --noteb:#5c4e1e; } }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, "Segoe UI", sans-serif; }
+  main { max-width:720px; margin:40px auto; padding:0 16px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:28px 32px; margin-bottom:16px; }
+  h1 { margin:0 0 4px; font-size:26px; } .sub { color:var(--muted); margin:0 0 8px; }
+  h2 { font-size:19px; margin:0 0 10px; } h2 .n { display:inline-grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff; font-size:15px; margin-right:8px; }
+  ol, ul { padding-left:22px; margin:8px 0; } li { margin-bottom:6px; }
+  code, .say { background:var(--bg); padding:2px 7px; border-radius:5px; }
+  .say { font-style:italic; }
+  .note { background:var(--note); border:1px solid var(--noteb); border-radius:8px; padding:10px 14px; margin-top:10px; }
+  table { border-collapse:collapse; width:100%; margin-top:6px; } td { border-top:1px solid var(--border); padding:8px 6px; vertical-align:top; }
+  a { color:var(--accent); } footer { color:var(--muted); font-size:14px; text-align:center; margin:20px 0; }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1>Set up MWS QuickBooks in Claude</h1>
+    <p class="sub">About 5 minutes. No technical knowledge needed.</p>
+    <p><strong>You'll need:</strong> Claude Desktop installed and signed in with your work account, your own QuickBooks Online login,
+    and the two codes Brian sends you (a <em>Client ID</em> and a <em>Client Secret</em>).</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">1</span>Install the extension</h2>
+    <ol>
+      <li>Download <code>mws-qbo-mcp-&lt;version&gt;.mcpb</code> from the shared QuickBooks Connector folder.</li>
+      <li><strong>Double-click</strong> the file. Claude Desktop opens an install window. Click <strong>Install</strong>.</li>
+    </ol>
+    <div class="note">Nothing happens when you double-click? In Claude Desktop, open <strong>Settings → Extensions</strong>, then drag the file onto that page
+    (or use the install option there and choose the file).</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">2</span>Fill in the settings</h2>
+    <table>
+      <tr><td><strong>LIVE Client ID</strong></td><td>Paste the Client ID Brian sent you.</td></tr>
+      <tr><td><strong>LIVE Client Secret</strong></td><td>Paste the Client Secret. Claude stores it securely.</td></tr>
+      <tr><td><strong>Sandbox Client ID / Secret</strong></td><td>Leave blank unless Brian asks you to test in the sandbox.</td></tr>
+      <tr><td><strong>Read-only mode</strong></td><td>Leave <em>off</em> unless Brian tells you otherwise. When it's on, Claude can look things up but can't change anything in QuickBooks.</td></tr>
+      <tr><td><strong>Sign-in relay address</strong></td><td>Leave as is.</td></tr>
+    </table>
+    <p>Click <strong>Save</strong> and make sure the extension is switched <strong>on</strong>.</p>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">3</span>Connect your QuickBooks company</h2>
+    <ol>
+      <li>Start a <strong>new chat</strong> in Claude and type: <span class="say">Connect a QuickBooks company</span></li>
+      <li>Your browser opens Intuit's sign-in page. Sign in with <strong>your own</strong> QuickBooks login.</li>
+      <li>Choose the company (entity) and click <strong>Connect</strong>.</li>
+      <li>When the page says <strong>"Connected to QuickBooks"</strong>, close that tab and go back to Claude. Say <span class="say">done</span>.</li>
+    </ol>
+    <p>Repeat for each company you work in. Claude remembers them all.</p>
+    <div class="note">If Intuit says you don't have permission to connect apps, ask a QuickBooks company admin, or Brian, for help.</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">4</span>Use it</h2>
+    <p>Just ask in plain English. For example:</p>
+    <ul>
+      <li><span class="say">Show me September's P&amp;L by class</span></li>
+      <li><span class="say">Which invoices are overdue, and who owes the most?</span></li>
+      <li><span class="say">What's in OFFICE expenses this month?</span></li>
+      <li><span class="say">Find transactions with no class this month</span></li>
+      <li><span class="say">Which companies are connected?</span> · <span class="say">Switch to &lt;company name&gt;</span> · <span class="say">Switch to sandbox</span></li>
+    </ul>
+    <div class="note"><strong>Before you click Allow:</strong> Claude asks your permission before every change it makes in QuickBooks
+    (new invoices, bills, customers, imports). Check the company name and the details first. Every change says which company it went to,
+    and whether that's the <strong>LIVE</strong> books or the <strong>SANDBOX</strong> test company.</div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">5</span>Updates</h2>
+    <p>When Brian announces a new version, download the new <code>.mcpb</code> file and double-click it. Your connections and settings are kept,
+    so there's nothing else to do. To check your version, ask Claude: <span class="say">Which QuickBooks connector version am I using?</span></p>
+  </div>
+
+  <div class="card">
+    <h2>Need help?</h2>
+    <p>Email <a href="mailto:brian.miller@middlewestspirits.com">brian.miller@middlewestspirits.com</a>.
+    Mention what you asked Claude and what it said back.</p>
+  </div>
+  <footer><a href="index.html">Home</a> · <a href="connect.html">Connect</a> · <a href="privacy.html">Privacy policy</a></footer>
+</main>
+</body>
+</html>
