@@ -30,6 +30,16 @@
   </div>
 
   <div class="card">
+    <h2><span class="n">0</span>Sync the audit log folder (one time)</h2>
+    <p>Every change made through Claude is logged in a shared SharePoint folder. Your computer needs a synced copy of it:</p>
+    <ol>
+      <li>Open <a href="https://mwscolumbus.sharepoint.com/sites/accountingteam2/Shared%20Documents/Claude%20QBO%20API%20Audit%20Log">Claude QBO API Audit Log</a> (Accounting Team site).</li>
+      <li>Click <strong>Sync</strong> in the toolbar (or <strong>Add shortcut to My files</strong>). Allow OneDrive to open if asked.</li>
+    </ol>
+    <div class="note">Can't open it? Ask Brian for access. You can still finish the setup; changes are logged on your computer and copied to SharePoint automatically once it's synced.</div>
+  </div>
+
+  <div class="card">
     <h2><span class="n">1</span>Install the extension</h2>
     <ol>
       <li>Download <code>mws-qbo-mcp-&lt;version&gt;.mcpb</code> from the shared QuickBooks Connector folder.</li>
@@ -42,6 +52,7 @@
   <div class="card">
     <h2><span class="n">2</span>Fill in the settings</h2>
     <table>
+      <tr><td><strong>Your name</strong></td><td>Your full name, e.g. <em>Jane Smith</em>. Every change you make through Claude is labeled with it.</td></tr>
       <tr><td><strong>LIVE Client ID</strong></td><td>Paste the Client ID Brian sent you.</td></tr>
       <tr><td><strong>LIVE Client Secret</strong></td><td>Paste the Client Secret. Claude stores it securely.</td></tr>
       <tr><td><strong>Sandbox Client ID / Secret</strong></td><td>Leave blank unless Brian asks you to test in the sandbox.</td></tr>
@@ -53,12 +64,14 @@
 
   <div class="card">
     <h2><span class="n">3</span>Connect your QuickBooks company (with an admin)</h2>
-    <p>Intuit only lets QuickBooks <strong>admins</strong> connect apps. If you're not an admin, an admin (usually Brian) does this step
-    on your computer one time.</p>
+    <p>Intuit only lets QuickBooks <strong>admins</strong> connect apps. <strong>If you are an admin</strong>, sign in yourself, so QuickBooks'
+    own audit trail shows your name. <strong>If you're not</strong>, an admin (usually Brian) does this step on your computer one time.
+    QuickBooks' audit trail will then show the admin, but every change you make is still labeled with <em>your</em> name
+    (an internal note on the transaction, plus the shared activity log).</p>
     <ol>
-      <li><strong>Have the admin with you first.</strong> Then start a <strong>new chat</strong> in Claude and type: <span class="say">Connect a QuickBooks company</span></li>
-      <li>Your browser opens Intuit's sign-in page. The <strong>admin</strong> signs in and chooses the company (entity), then clicks <strong>Connect</strong>.</li>
-      <li>When the page says <strong>"Connected to QuickBooks"</strong>, the admin <strong>signs out of Intuit</strong> in that browser and closes the tab.</li>
+      <li>If an admin is signing in for you, <strong>have them with you first.</strong> Then start a <strong>new chat</strong> in Claude and type: <span class="say">Connect a QuickBooks company</span></li>
+      <li>Your browser opens Intuit's sign-in page. The admin (you, or the admin helping you) signs in, chooses the company (entity), and clicks <strong>Connect</strong>.</li>
+      <li>When the page says <strong>"Connected to QuickBooks"</strong>, close the tab. If someone else signed in for you, they <strong>sign out of Intuit</strong> in that browser first.</li>
       <li>Back in Claude, say <span class="say">done</span>.</li>
     </ol>
     <p>Repeat for each company you work in. Claude remembers them all, and the connection renews itself, so this is a one-time step.</p>

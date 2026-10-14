@@ -33,8 +33,12 @@
     to operate the app (Intuit and Anthropic), and with a customer when a user chooses to email them an invoice.</p>
 
     <p><strong>Storage and security:</strong> OAuth tokens are stored only on the user's own computer, in a file protected by their Windows account.
-    They are never sent to or stored on our systems. QuickBooks data is not cached or stored. It is fetched live for each request and kept
-    in memory only while that request is processed. A log of requests (the action taken and its inputs) is kept on the user's computer for troubleshooting.</p>
+    They are never sent to or stored on our systems. QuickBooks data is not cached: it is fetched live for each request and kept
+    in memory only while that request is processed. The only QuickBooks data the app keeps is an accountability record of changes:
+    each change made through the app is recorded in an activity log
+    (who made it, when, the company, and the record's type, number, customer/vendor or item name, and amount) kept in Middle West Spirits'
+    internal shared folder, and transactions it creates or edits carry an internal note naming the person. A log of requests is also kept on
+    the user's computer for troubleshooting.</p>
 
     <p><strong>Disconnecting:</strong> An administrator can revoke access at any time from QuickBooks Online (Settings → Apps) or by contacting us.
     Revoked tokens stop working immediately and are deleted from the user's computer the next time the app runs.</p>
